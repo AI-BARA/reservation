@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block body %}
+<form action="" method="GET">
+    {% if not user %}
+    名前を入力してください。<br>
+    <p>担当者<input type="text" name="user"></p>
+    <button type="submit">参照</button><br>
+    {% endif %}
+    {% if user %}
+    {{ user }}さん、こんにちは。<br>
+    <meta http-equiv="Refresh" content="0.4;URL=/order/?user={{ user }}">
+    {% endif %}
+</form>
+{% endblock %}

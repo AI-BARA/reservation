@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block body %}
+<style>
+  input {
+    width: 20%;
+    height: 70px;
+    font-size: 50px;
+  }
+</style>
+<h1>塩　 : {{ first.solt_butter }}</h1>
+<h1>カレー　　 : {{ first.curry }}</h1>
+<h1>キャラメル : {{ first.caramel }}</h1>
+<h1>チョコ　　 : {{ first.chocolate }}</h1>
+<h1>その他　　 : {{ first.enter }}</h1>
+<h1>料金　　　 : {{ buy }}</h1>
+<h3>担当:{{ first.name }}</h3>
+<form action="" method="post">
+  <input type="submit" name="button_1" value="受け渡し済" class="enter">
+  {% csrf_token %}
+</form>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block body %}
+<a href="/maker">オーダー</a>
+<table border="1">
+    <thead>
+      <tr>
+        <th>塩</th>
+        <th>カレー</th>
+        <th>キャラメル</th>
+        <th>チョコ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ sol }}</td>
+        <td>{{ cur }}</td>
+        <td>{{ car }}</td>
+        <td>{{ cho }}</td>
+      </tr>
+    </tbody>
+</table><br>
+  <form method="post" action="{% url 'store:make_delete' %}">
+    <table border="1">
+      <thead>
+        <tr>
+          <th></th>
+          <th>受付番号</th>
+          <th>塩</th>
+          <th>カレー</th>
+          <th>キャラメル</th>
+          <th>チョコ</th>
+          <th>その他</th>
+          <th>状況</th>
+          <th>担当</th>
+          <th>済み</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for message in messages %}
+          <tr>
+            <td><input type="checkbox" name="make_ids" value="{{ message.id }}"></td>
+            <td>{{ message.serial }}</td>
+            <td>{{ message.solt_butter }}</td>
+            <td>{{ message.curry }}</td>
+            <td>{{ message.caramel }}</td>
+            <td>{{ message.chocolate }}</td>
+            <td>{{ message.enter }}</td>
+            <td>{{ message.status }}</td>
+            <td>{{ message.name }}</td>
+            <td></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% csrf_token %}
+    <input type="submit" value="調理済">
+  </form>
+  <meta http-equiv="Refresh" content="7;URL=/maker-list">
+
+{% endblock %}

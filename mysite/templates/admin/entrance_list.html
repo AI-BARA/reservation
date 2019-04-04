@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block body %}
+<a href="/entrance0">受付</a><br>
+<table border="1">
+  <thead>
+    <tr>
+      <th>受付番号</th>
+      <th>塩</th>
+      <th>カレー</th>
+      <th>キャラメル</th>
+      <th>チョコ</th>
+      <th>その他</th>
+      <th>状況</th>
+      <th>担当</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for message in messages %}
+      <tr>
+        <td>{{ message.serial }}</td>
+        <td>{{ message.solt_butter }}</td>
+        <td>{{ message.curry }}</td>
+        <td>{{ message.caramel }}</td>
+        <td>{{ message.chocolate }}</td>
+        <td>{{ message.enter }}</td>
+        <td>{{ message.status }}</td>
+        <td>{{ message.name }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<meta http-equiv="Refresh" content="7.5;URL=/entrance-list">
+{% endblock %}

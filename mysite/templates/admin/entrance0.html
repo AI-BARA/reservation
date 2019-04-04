@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block body %}
+<a href="/entrance-list">受付一覧</a><br>
+<form action="" method="POST">
+{% csrf_token %}
+{% if not serial %}
+<h3>受付番号を入力してください。</h3><br>
+<p>受付番号<input type="number" name="serial"></p>
+<button type="submit">参照</button><br>
+{{ error }}
+{% endif %}
+{% if serial %}
+<meta http-equiv="Refresh" content="0.1;URL=/entrance1/?serial={{ serial }}">
+{% endif %}
+</form>
+{% endblock %}

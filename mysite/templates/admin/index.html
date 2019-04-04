@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block body %}
+<style>
+    #blockA {
+      float:left;
+    }
+    #blockB {
+      margin-left: 43%;
+    }
+</style>
+<h3>合計</h3>
+<table border="1">
+    <thead>
+      <tr>
+        <th>来客数</th>
+        <th>塩</th>
+        <th>カレー</th>
+        <th>キャラメル</th>
+        <th>チョコ</th>
+        <th>注文数</th>
+        <th>売り上げ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ peo3 }}</td>
+        <td>{{ sol3 }}</td>
+        <td>{{ cur3 }}</td>
+        <td>{{ car3 }}</td>
+        <td>{{ cho3 }}</td>
+        <td>{{ sum3 }}</td>
+        <td>{{ get3 }}</td>
+      </tr>
+    </tbody>
+</table><br>
+<div id="blockA">
+<h3>集計１日目</h3>
+<table border="1">
+  <thead>
+    <tr>
+      <th>来客数</th>
+      <th>塩</th>
+      <th>カレー</th>
+      <th>キャラメル</th>
+      <th>チョコ</th>
+      <th>注文数</th>
+      <th>売り上げ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ peo }}</td>
+      <td>{{ sol }}</td>
+      <td>{{ cur }}</td>
+      <td>{{ car }}</td>
+      <td>{{ cho }}</td>
+      <td>{{ sum }}</td>
+      <td>{{ get }}</td>
+    </tr>
+  </tbody>
+</table>
+<h3>リスト</h3>
+  <form method="post" action="{% url 'store:delete' %}">
+    <table border="1">
+      <thead>
+        <tr>
+          <th></th>
+          <th>オーダー時間</th>
+          <th>人数</th>
+          <th>受付番号</th>
+          <th>塩</th>
+          <th>カレー</th>
+          <th>キャラメル</th>
+          <th>チョコ</th>
+          <th>状況</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for message in messages %}
+          <tr>
+            <td><input type="checkbox" name="delete_ids" value="{{ message.id }}"></td>
+            <td>{{ message.created_at }}</td>
+            <td>{{ message.people }}</td>
+            <td>{{ message.serial }}</td>
+            <td>{{ message.solt_butter }}</td>
+            <td>{{ message.curry }}</td>
+            <td>{{ message.caramel }}</td>
+            <td>{{ message.chocolate }}</td>
+            <td>{{ message.status }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% csrf_token %}
+    <input type="submit" value="削除">
+  </form>
+</div>
+<div id="blockB">
+<h3>集計２日目</h3>
+    <table border="1">
+        <thead>
+          <tr>
+            <th>来客数</th>
+            <th>塩</th>
+            <th>カレー</th>
+            <th>キャラメル</th>
+            <th>チョコ</th>
+            <th>注文数</th>
+            <th>売り上げ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ peo2 }}</td>
+            <td>{{ sol2 }}</td>
+            <td>{{ cur2 }}</td>
+            <td>{{ car2 }}</td>
+            <td>{{ cho2 }}</td>
+            <td>{{ sum2 }}</td>
+            <td>{{ get2 }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>リスト</h3>
+        <form method="post" action="{% url 'store:delete' %}">
+          <table border="1">
+            <thead>
+              <tr>
+                <th></th>
+                <th>オーダー時間</th>
+                <th>人数</th>
+                <th>受付番号</th>
+                <th>塩</th>
+                <th>カレー</th>
+                <th>キャラメル</th>
+                <th>チョコ</th>
+                <th>状況</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for message in messages2 %}
+                <tr>
+                  <td><input type="checkbox" name="delete_ids" value="{{ message.id }}"></td>
+                  <td>{{ message.created_at }}</td>
+                  <td>{{ message.people }}</td>
+                  <td>{{ message.serial }}</td>
+                  <td>{{ message.solt_butter }}</td>
+                  <td>{{ message.curry }}</td>
+                  <td>{{ message.caramel }}</td>
+                  <td>{{ message.chocolate }}</td>
+                  <td>{{ message.status }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% csrf_token %}
+          <input type="submit" value="削除">
+        </form>
+</div>
+{% endblock %}

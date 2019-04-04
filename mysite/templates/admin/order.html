@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block body %}
+<style>
+    input.back {
+      width: 20%;
+      height: 70px;
+      font-size: 50px;
+    }
+  </style>
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/input.css' %}"/>
+{% if serial %}
+<meta http-equiv="Refresh" content="0.1;URL=/order/?user={{ user }}&serial2={{ serial }}">
+{% endif %}
+{% if not serial2 %}
+<form action="" method="post">
+    <h4>担当:{{ user }}</h4>
+    {{ form.errors.people }}
+    <p>{{ form.people.label }}<label class="2">{{ form.people }}</label></p><br>
+    {% csrf_token %}
+    {{ form.errors.solt_butter }}
+    <label class="2">{{ form.solt_butter.label }}{{ form.solt_butter }}</label><br><br>
+    {% csrf_token %}
+    {{ form.errorscurry. }}
+    <label class="2">{{ form.curry.label }}{{ form.curry }}</label><br><br>
+    {% csrf_token %}
+    {{ form.errors.caramel }}
+    <label class="2">{{ form.caramel.label }}{{ form.caramel }}</label><br><br>
+    {% csrf_token %}
+    {{ form.errors.chocolate }}
+    <label class="2">{{ form.chocolate.label }}{{ form.chocolate }}</label><br><br>
+    {% csrf_token %}
+    {{ form.errors.enter }}
+    <p>{{ form.enter.label }}</p><label class="3">{{ form.enter }}</label><br>
+    {% csrf_token %}
+    {{ error }}<br>
+    <input type="submit" value="登録" class="enter">
+</form>
+{% endif %}
+{% if serial2 %}
+<h2>受付番号</h2><h1>{{ serial2 }}</h1>
+<input class="back" type="button" value="確認" onClick="location.href='/order/?user={{ user }}'">
+{% endif %}
+{% endblock %}
